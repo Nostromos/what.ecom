@@ -19,7 +19,7 @@ This is the final portfolio project in the Codecademy Full Stack Career path. Th
 ### Installing & Running
 > [!NOTE]  
 > I will come back to build out this section after I've completed development on v1.
-> 
+
 1. Clone the repo
 2. `npm install` in both the frontend/ and backend/ folders
 3. `npm run dev` for both to get em up
