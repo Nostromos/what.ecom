@@ -6,6 +6,7 @@ import LogIn from '../../elements/LogIn/LogIn';
 import './Header.css';
 
 export default function Header() {
+  // eslint-disable-next-line no-unused-vars
   const [loggedIn, setLoggedIn] = useState(true);
   
   return (
