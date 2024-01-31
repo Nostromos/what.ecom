@@ -1,0 +1,13 @@
+#headerNav {
+  display: flex;
+}
+
+#navList {
+  display: flex;
+  flex-direction: row;
+}
+
+.headerNavItem {
+  padding: 0px;
+  margin: 5px;
+}
