@@ -10,10 +10,10 @@ export default function Header() {
   const [loggedIn, setLoggedIn] = useState(true);
   
   return (
-    <header id="headerContainer">
-      <Logo />
-      <HeaderNav />
-      {loggedIn ? <UserNav /> : <LogIn />}
+    <header id="header">
+      <Logo id="logo"/>
+      <HeaderNav id="header-nav"/>
+      {loggedIn ? <UserNav id="user-nav"/> : <LogIn id="login" />}
     </header>
   )
 }

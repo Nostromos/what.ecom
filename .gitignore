@@ -134,4 +134,7 @@ dist
 .pnp.*
 
 # Postgres
-/backend/data/
+/backend/postgres/data/
+
+#MacOS
+.DS_Store
