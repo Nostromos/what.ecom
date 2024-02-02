@@ -1,7 +1,16 @@
 import LanguageSelect from "../../elements/LanguageSelect/LanguageSelect";
 import './Footer.css';
 
-export default function Footer() {
+/**
+ * @summary Footer component.
+ * @description Component for returning the main site footer, with copyright, footer nav, and language select components.
+ * @param {string} currentLanguage - the language to render copy in for the user.
+ * @returns {ReactNode} Returns footer including copyright, footer nav, and [the LanguageSelect]{@link LanguageSelect} component.
+ * @author Michael Monaghan
+ */
+
+// eslint-disable-next-line react/prop-types
+export default function Footer ({ currentLanguage }) {
   
   return (
     <footer id="footer">
@@ -14,7 +23,7 @@ export default function Footer() {
           <li className="footer-nav-item">Support</li>
         </ol>
       </nav>
-      <LanguageSelect id="language-select"/>
+      <LanguageSelect id="language-select" currentLangugae={currentLanguage} />
     </footer>
   )
 }
