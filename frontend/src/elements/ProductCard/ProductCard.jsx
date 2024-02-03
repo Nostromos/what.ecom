@@ -2,6 +2,7 @@
 /**
  * Component to display one product in a card with associated thumb, color, and pricing information. 
  * 
+ * @param {integer} productId - the id of the product for sorting
  * @param {string} productName - the name of the product
  * @param {string} productThumbnail - Path to the thumbnail image of a product
  * @param {number} productPrice - The price of a product not including discounts
@@ -12,10 +13,10 @@
  * @returns {ReactNode} Returns a card for a single product including color & pricing information.
  */
 
-export default function ProductCard({ productName, productThumbnail, productPrice, hasDiscount, discountPrice, productColors }) {
+export default function ProductCard({ productId, productName, productThumbnail, productPrice, hasDiscount, discountPrice, productColors }) {
   
   return (
-    <>
+    <article id={productId}>
       <img src={productThumbnail} />
       <p>{productName}</p>
       <p>Product Colors: {productColors}</p>
@@ -29,6 +30,6 @@ export default function ProductCard({ productName, productThumbnail, productPric
             ${discountPrice}
           </p>
       )}
-    </>
+    </article>
   )
 }
