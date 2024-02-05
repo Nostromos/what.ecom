@@ -39,11 +39,13 @@ UserRouter.route('/')
 
   });
 
+// POST Register a new user
 UserRouter.route('/register')
   .post((req, res, next) => {
   
   });
 
+// POST Log a user in
 UserRouter.route('/login')
   .post((req, res, next) => {
 

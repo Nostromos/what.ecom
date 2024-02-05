@@ -1,0 +1,148 @@
+/* ---------------------------------------
+ * Create roles...
+ */---------------------------------------
+
+CREATE ROLE webapp
+
+ /* ---------------------------------------
+  * Create users...
+  */---------------------------------------
+
+
+
+ /* ---------------------------------------
+  * Assign roles...
+  */---------------------------------------
+
+
+
+/* ---------------------------------------
+ *  Create types & domains...
+ */---------------------------------------
+
+-- ENUM for Address Type
+CREATE TYPE address_type AS ENUM (
+  'billing', 'shipping', 'mailing'
+)
+
+-- Checking contact name for null & spaces. 
+-- I decided to do validation outside of the server but keeping this for posterity.
+CREATE DOMAIN contact_name AS
+  VARCHAR NOT NULL CHECK (value !~ '\s');
+
+-- Phone Number Check
+CREATE DOMAIN us_phone_number AS
+  TEXT CHECK
+
+/* ---------------------------------------
+ * Create functions...
+ */---------------------------------------
+
+-- Create trigger to set updated_at field on each insert or update
+CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.udpated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUGE plpgsql;
+
+/* ---------------------------------------
+ *  Create tables...
+ */---------------------------------------
+
+-- Users 
+CREATE TABLE users (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  first_name VARCHAR NOT NULL,
+  last_name VARCHAR NOT NULL,
+  email_address CITEXT UNIQUE NOT NULL,
+  phone INTEGER(10) NOT NULL,
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ,
+  created_by UUID,
+  updated_by UUID,
+);
+
+-- Addresses
+CREATE TABLE addresses (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id NOT NULL REFERENCES users(id),
+  type address_type NOT NULL,
+  street_number INTEGER(5) NOT NULL,
+  street_name VARCHAR(20) NOT NULL,
+  street_suffix VARCHAR (5) NOT NULL,
+  line_2 VARCHAR(20),
+  city VARCHAR(30),
+  state VARCHAR(40),
+  country VARCHAR(40),
+  zip VARCHAR(10),
+);
+
+-- Payments
+CREATE TABLE payment_cards (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id NOT NULL REFERENCES users(id),
+  number VARCHAR(16) UNIQUE NOT NULL,
+  security_code VARCHAR(4) NOT NULL,
+  billing_address_id REFERENCES addresses(id),
+  first_name REFERENCES users(first_name),
+  last_name REFERENCES users(last_name),
+  card_type VARCHAR(10) NOT NULL,
+);
+
+-- Products
+CREATE TABLE products (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  sku INTEGER NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  base_price DECIMAL(12, 2) NOT NULL,
+  has_discount BOOLEAN NOT NULL,
+  discount_price DECIMAL(12, 2),
+  short_description VARCHAR(165),
+  product_description TEXT,
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ,
+  created_by UUID,
+  updated_by UUID,
+);
+
+-- Product Images - list of urls to reference for product images
+CREATE TABLE product_images (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  product_id NOT NULL REFERENCES products(id),
+  url TEXT NOT NULL,
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ,
+  created_by UUID,
+  updated_by UUID,
+);
+
+-- Cart
+CREATE TABLE cart (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id REFERENCES users(id);
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ,
+  created_by UUID,
+  updated_by UUID,
+);
+
+-- Products-Carts - combo of carts and products
+CREATE TABLE products_cart (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  cart_id REFERENCES cart(id),
+  product_id REFERENCES products(id),
+  quantity INTEGER(2),
+);
+
+-- Orders
+CREATE TABLE orders (
+  id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id REFERENCES users(id),
+  cart_id REFERENCES cart(id),
+  base_price DECIMAL(12, 2) NOT NULL,
+  total_price DECIMAL(12, 2) NOT NULL,
+  shipping_address REFERENCES addresses(id),
+  billing_address REFERENCES addresses(id),
+);
