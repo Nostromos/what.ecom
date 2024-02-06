@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import * as db from '../data/utils/data.js';
 
-const UserRouter = express.Router();
+export const UserRouter = new Router();
 /**
  * @swagger
  * /user:
@@ -50,5 +51,3 @@ UserRouter.route('/login')
   .post((req, res, next) => {
 
   });
-
-module.exports = UserRouter;

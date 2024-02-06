@@ -1,5 +1,3 @@
-const express = require('express');
+import express from 'express';
 
-const CheckoutRouter = express.Router();
-
-module.exports = CheckoutRouter;
+export const CheckoutRouter = express.Router();

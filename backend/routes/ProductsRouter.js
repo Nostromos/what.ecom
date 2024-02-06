@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import query from '../data/utils/data';
 
-const ProductsRouter = express.Router();
+export const ProductsRouter = express.Router();
 
 /**
  * @swagger
@@ -59,19 +60,21 @@ ProductsRouter.route('/')
 
 ProductsRouter.route('/:id')
   // GET A Single Product by ID
-  .get((req, res, next) => {
-
+  .get( async (req, res, next) => {
+    const { id } = req.params;
+    const { rows } = await query('SELECT * FROM products WHERE id = $1', [id]);
+    res.send(rows);
   })
   // POST A Single Product by ID
-  .post((req, res, next) => {
+  .post( async (req, res, next) => {
   
   })
   // PUT Update a single product by ID
-  .put((req, res, next) => {
+  .put( async (req, res, next) => {
 
   })
   // DELETE A single product by ID
-  .delete((req, res, next) => {
+  .delete( async (req, res, next) => {
   
   });
 
@@ -84,5 +87,3 @@ ProductsRouter.get('/:category', (req, res, next) => {
 ProductsRouter.get('/', (req, res, next) => {
 
 });
-
-module.exports = ProductsRouter;
