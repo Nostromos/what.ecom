@@ -8,24 +8,24 @@ CREATE ROLE r_read_app WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPL
 -- Write role for the webapp, for the few cases where we're writing directly to db. 
 CREATE ROLE r_write_app WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS LOGIN PASSWORD /* sample password here, not the real password lol */ 'lajslejreljreljer';
 
+
 /* ---------------------------------------
  * Create users...
  */---------------------------------------
 
-CREATE USER webapp_read WITH NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT, LOGIN WITH PASSWORD /* sample password here, not the real one lol */ 'KFR48dLrS@FREBAjf7#F';
-
-CREATE USER webapp_write WITH NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT, LOGIN WITH PASSWORD /* sample password here, not the real one lol */ 'KFR48dLrS@FREBAjf7#F';
+CREATE USER webapp WITH NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT, LOGIN WITH PASSWORD /* sample password here, not the real one lol */ 'KFR48dLrS@FREBAjf7#F';
 
 /* ---------------------------------------
  * Assign roles...
  */---------------------------------------
 
-GRANT SELECT ON /* all app tables */ TO r_read_app;
+GRANT SELECT ON ALL TABLES IN SCHEMA what.ecom TO r_read_app;
 
-GRANT INSERT, UPDATE ON /* all app tables */ TO r_write_app;
+GRANT INSERT, UPDATE ON ON ALL TABLES IN SCHEMA what.ecom TO r_write_app;
 
-GRANT r_read_app TO webapp_read;
-GRANT r_write_app TO webapp_write;
+GRANT r_read_app TO webapp;
+GRANT r_write_app TO webapp;
+
 
 /* ---------------------------------------
  *  Create types & domains...
@@ -43,20 +43,30 @@ CREATE DOMAIN contact_name AS
 
 -- Phone Number Check
 CREATE DOMAIN us_phone_number AS
-  TEXT CHECK
+  TEXT CHECK (/* TODO FINISH THIS */)
+
 
 /* ---------------------------------------
  * Create functions...
  */---------------------------------------
 
 -- Create trigger to set updated_at field on each insert or update
+/* we defined our function with our logic of updating updated_on with the value of now().
+
+In the function, NEW variable is a Record Object. New contains the data that’s being inserted or updated in the table. 
+This means we can update and read any value of the row before its persisted on disk.
+
+NEW.updated_on = now() means update value of updated_on by value of now().
+This way we can update any column using triggers as per our requirements.
+ */
 CREATE OR REPLACE FUNCTION trigger_set_timestamp()
 RETURNS TRIGGER AS $$
 BEGIN
-  NEW.udpated_at = NOW();
+  NEW.updated_at = NOW();
   RETURN NEW;
 END;
 $$ LANGUGE plpgsql;
+
 
 /* ---------------------------------------
  *  Create tables...
@@ -68,11 +78,11 @@ CREATE TABLE users (
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
   email_address CITEXT UNIQUE NOT NULL,
-  phone INTEGER(10) NOT NULL,
+  phone VARCHAR NOT NULL,
   created_at TIMESTAMPTZ,
   updated_at TIMESTAMPTZ,
-  created_by UUID,
-  updated_by UUID,
+  created_by VARCHAR,
+  updated_by VARCHAR,
 );
 
 -- Addresses
@@ -97,8 +107,8 @@ CREATE TABLE payment_cards (
   number VARCHAR(16) UNIQUE NOT NULL,
   security_code VARCHAR(4) NOT NULL,
   billing_address_id REFERENCES addresses(id),
-  first_name REFERENCES users(first_name),
-  last_name REFERENCES users(last_name),
+  billing_first_name VARCHAR NOT NULL,
+  billing_last_name VARCHAR NOT NULL,
   card_type VARCHAR(10) NOT NULL,
 );
 
@@ -107,11 +117,12 @@ CREATE TABLE products (
   id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   sku INTEGER NOT NULL,
   name VARCHAR(50) NOT NULL,
+  quantity INTEGER(3) NOT NULL,
   base_price DECIMAL(12, 2) NOT NULL,
   has_discount BOOLEAN NOT NULL,
   discount_price DECIMAL(12, 2),
   short_description VARCHAR(165),
-  product_description TEXT,
+  long_description TEXT,
   created_at TIMESTAMPTZ,
   updated_at TIMESTAMPTZ,
   created_by UUID,
@@ -133,7 +144,7 @@ CREATE TABLE product_images (
 CREATE TABLE cart (
   id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   user_id REFERENCES users(id);
-  created_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ,
   created_by UUID,
   updated_by UUID,
@@ -144,7 +155,11 @@ CREATE TABLE products_cart (
   id SERIAL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   cart_id REFERENCES cart(id),
   product_id REFERENCES products(id),
-  quantity INTEGER(2),
+  quantity INTEGER(2) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ,
+  created_by UUID,
+  updated_by UUID,
 );
 
 -- Orders
@@ -154,6 +169,17 @@ CREATE TABLE orders (
   cart_id REFERENCES cart(id),
   base_price DECIMAL(12, 2) NOT NULL,
   total_price DECIMAL(12, 2) NOT NULL,
-  shipping_address REFERENCES addresses(id),
-  billing_address REFERENCES addresses(id),
+  payment_card_id REFERENCES payment_cards(id),
+  shipping_address_id REFERENCES addresses(id),
+  billing_address_id REFERENCES addresses(id),
 );
+
+
+/* ---------------------------------------
+ *  Populate tables...
+ */---------------------------------------
+
+ -- Users
+ COPY users
+ FROM '/Users/figgefenk/Dev/Codecademy/what.ecom/backend/postgres/utils/sample_data/users.csv'
+ DELIMITER ',' CSV HEADER;
