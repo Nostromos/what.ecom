@@ -2,19 +2,30 @@
  * Create roles...
  */---------------------------------------
 
-CREATE ROLE webapp
+-- Read role for the webapp. All these options except login are explicitly disabled by default but I'm adding them for clarity of purpose behind this and other roles. 
+CREATE ROLE r_read_app WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS LOGIN PASSWORD /* sample password here, not the real password lol */'tx7CnGkYrC?Y?LfkbHh?';
 
- /* ---------------------------------------
-  * Create users...
-  */---------------------------------------
+-- Write role for the webapp, for the few cases where we're writing directly to db. 
+CREATE ROLE r_write_app WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS LOGIN PASSWORD /* sample password here, not the real password lol */ 'lajslejreljreljer';
 
+/* ---------------------------------------
+ * Create users...
+ */---------------------------------------
 
+CREATE USER webapp_read WITH NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT, LOGIN WITH PASSWORD /* sample password here, not the real one lol */ 'KFR48dLrS@FREBAjf7#F';
 
- /* ---------------------------------------
-  * Assign roles...
-  */---------------------------------------
+CREATE USER webapp_write WITH NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOINHERIT, LOGIN WITH PASSWORD /* sample password here, not the real one lol */ 'KFR48dLrS@FREBAjf7#F';
 
+/* ---------------------------------------
+ * Assign roles...
+ */---------------------------------------
 
+GRANT SELECT ON /* all app tables */ TO r_read_app;
+
+GRANT INSERT, UPDATE ON /* all app tables */ TO r_write_app;
+
+GRANT r_read_app TO webapp_read;
+GRANT r_write_app TO webapp_write;
 
 /* ---------------------------------------
  *  Create types & domains...
