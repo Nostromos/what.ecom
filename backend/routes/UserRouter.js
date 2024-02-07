@@ -1,5 +1,4 @@
-import express from 'express';
-import * as db from '../data/utils/data.js';
+import { Router } from 'express';
 
 export const UserRouter = new Router();
 /**

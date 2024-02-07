@@ -1,12 +1,10 @@
 /* Imports */
-const express = require('express');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const UserRouter = require('./routes/UserRouter.js');
-const ProductsRouter = require('./routes/ProductsRouter.js');
-const CartRouter = require('./routes/CartRouter.js');
-const CheckoutRouter = require('./routes/CheckoutRouter.js');
-const OrderRouter = require('./routes/OrderRouter.js');
+import 'dotenv/config.js';
+import express from 'express';
+import morgan from 'morgan';
+
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 /* Swagger/JSDocs Setup */
 const swaggerDefinition = {
@@ -42,18 +40,31 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 /* Express */
 const app = express();
 const port = 3000;
+console.log(`Express initalized...`)
+
+app.use(morgan('combined'));
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use('/user', UserRouter);
-app.use('/products', ProductsRouter);
-app.use('/cart', CartRouter);
-app.use('/checkout', CheckoutRouter);
-app.use('/order', OrderRouter);
+import { UserRouter } from './routes/UserRouter.js';
+app.use('/api/user', UserRouter);
+console.log(`UserRouter initalized...`);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+import { ProductsRouter } from './routes/ProductsRouter.js';
+app.use('/api/products', ProductsRouter);
+console.log(`ProductsRouter initalized...`);
+
+import { CartRouter } from './routes/CartRouter.js';
+app.use('/api/cart', CartRouter);
+console.log(`CartRouter initalized...`)
+
+import { CheckoutRouter } from './routes/CheckoutRouter.js';
+app.use('/api/checkout', CheckoutRouter);
+console.log(`CheckoutRouter initalized...`)
+
+import { OrderRouter } from './routes/OrderRouter.js';
+app.use('/api/order', OrderRouter);
+console.log(`OrderRouter initialized...`)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

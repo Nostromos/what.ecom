@@ -1,5 +1,6 @@
 import express from 'express';
-import query from '../data/utils/data';
+import query from '../data/utils/data.js';
+import cors from 'cors';
 
 export const ProductsRouter = express.Router();
 
@@ -46,8 +47,15 @@ export const ProductsRouter = express.Router();
 
 ProductsRouter.route('/')
   // GET All Products
-  .get((req, res, next) => {
-
+  .get(cors(), async (req, res, next) => {
+    try {
+      console.log('GET Request received for all products...');
+      const { rows } = await query('SELECT * FROM products LIMIT 10');
+      if (rows) { console.log(rows) };
+      res.status(200).send(rows);
+    } catch (err) {
+      console.error(err);
+    }
   })
   // POST A List of Products
   .post((req, res, next) => {
@@ -60,10 +68,11 @@ ProductsRouter.route('/')
 
 ProductsRouter.route('/:id')
   // GET A Single Product by ID
-  .get( async (req, res, next) => {
+  .get((req, res, next) => {
     const { id } = req.params;
-    const { rows } = await query('SELECT * FROM products WHERE id = $1', [id]);
-    res.send(rows);
+    const { rows } = query('SELECT * FROM products WHERE id = $1', [id]);
+    console.log(rows);
+    res.json(rows);
   })
   // POST A Single Product by ID
   .post( async (req, res, next) => {
