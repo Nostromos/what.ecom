@@ -45,6 +45,13 @@ CREATE DOMAIN contact_name AS
 CREATE DOMAIN us_phone_number AS
   TEXT CHECK (/* TODO FINISH THIS */)
 
+-- Order Status enum & table update
+CREATE TYPE order_status AS ENUM (
+  'checkout', 'pending', 'paid', 'preparing', 'shipped', 'fulfilled'
+);
+
+ALTER TABLE orders
+ADD status order_status NOT NULL DEFAULT 'checkout';
 
 /* ---------------------------------------
  * Create functions...

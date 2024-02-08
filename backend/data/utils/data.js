@@ -15,6 +15,6 @@ const pool = new Pool({
 });
 
 export default function query(text, params, callback) {
-  console.log(`Query Received with -\n Text: ${text}\n Params: ${params}\nCallback: ${callback}`);
+  console.info(`Query Received with -\n Text: ${text}\n Params: ${params}\nCallback: ${callback}`);
   return pool.query(text, params, callback);
 }

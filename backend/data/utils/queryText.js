@@ -60,3 +60,8 @@ export const getProductsByCategory =
   `SELECT *
    FROM products
    WHERE category = $1`;
+
+export const getOrderInformation =
+  `SELECT *
+   FROM orders
+   WHERE id = $1`;
