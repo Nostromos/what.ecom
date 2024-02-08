@@ -50,3 +50,13 @@ export const removeSingleProduct =
   `DELETE FROM products_carts
    WHERE cart_id = $1
    AND product_id = $2`;
+
+export const updateSingleProductQuantity =
+  `UPDATE products
+   SET quantity = quantity - $1
+   WHERE id = $2`;
+
+export const getProductsByCategory =
+  `SELECT *
+   FROM products
+   WHERE category = $1`;

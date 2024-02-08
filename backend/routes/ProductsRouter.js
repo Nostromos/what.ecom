@@ -1,6 +1,9 @@
 import express from 'express';
 import query from '../data/utils/data.js';
-import cors from 'cors';
+import {
+  updateSingleProductQuantity,
+  getProductsByCategory
+} from '../data/utils/queryText.js';
 
 export const ProductsRouter = express.Router();
 
@@ -47,52 +50,60 @@ export const ProductsRouter = express.Router();
 
 ProductsRouter.route('/')
   // GET All Products
-  .get(cors(), async (req, res, next) => {
+  .get(async (req, res, next) => {
+
     try {
-      console.log('GET Request received for all products...');
-      const { rows } = await query('SELECT * FROM products LIMIT 10');
+      const { rows } = await query('SELECT * FROM products LIMIT 100');
       if (rows) { console.log(rows) };
-      res.status(200).send(rows);
+      res.status(200).json(rows);
     } catch (err) {
       console.error(err);
     }
-  })
-  // POST A List of Products
-  .post((req, res, next) => {
 
-  })
-  // PUT Update a list of products 
-  .put((req, res, next) => {
-  
   });
 
 ProductsRouter.route('/:id')
   // GET A Single Product by ID
-  .get((req, res, next) => {
+  .get(async (req, res, next) => {
     const { id } = req.params;
-    const { rows } = query('SELECT * FROM products WHERE id = $1', [id]);
-    console.log(rows);
-    res.json(rows);
-  })
-  // POST A Single Product by ID
-  .post( async (req, res, next) => {
-  
-  })
-  // PUT Update a single product by ID
-  .put( async (req, res, next) => {
+    
+    try {
+      const { rows } = await query('SELECT * FROM products WHERE id = $1', [id]);
+      if (rows) { console.log(rows) };
+      res.json(rows);
+    } catch (err) {
+      console.error(err);
+    }
 
   })
-  // DELETE A single product by ID
-  .delete( async (req, res, next) => {
-  
+  // PUT Update a single product by ID
+  .put(async (req, res, next) => {
+    const text = updateSingleProductQuantity;
+    const { id } = req.params;
+    const values = [id];
+
+    try {
+      const { rows } = await query(text, values);
+      if (rows) { console.log(rows) };
+      res.json(rows);
+    } catch (err) {
+      console.error(err);
+    }
+    
   });
 
 // GET A list of products by category
-ProductsRouter.get('/:category', (req, res, next) => {
+ProductsRouter.get('/:category', async (req, res, next) => {
+  const text = getProductsByCategory;
+  const { category } = req.params;
+  const values = [category];
 
-});
-
-// GET A list of products by query and/or filter
-ProductsRouter.get('/', (req, res, next) => {
+  try {
+    const { rows } = await query(text, values);
+    if (rows) { console.log(rows) };
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+  }
 
 });
