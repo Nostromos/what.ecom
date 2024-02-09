@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 /* eslint-disable react/prop-types */
 /**
  * Component to display one product in a card with associated thumb, color, and pricing information. 
