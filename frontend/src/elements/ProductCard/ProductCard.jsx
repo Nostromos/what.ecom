@@ -18,19 +18,19 @@ import { useEffect, useState } from 'react';
 export default function ProductCard(product) {
   
   return (
-    <article class="product-card" key={product.id} sku={product.sku}>
-      <a href={/* LINK TO PRODUCT DETAILS PAGE */}>
-      <img src={product.thumbnail} class="product-card-thumbnail" />
+    <article className="product-card" key={product.id} >
+      <a href="">
+      <img src={product.thumbnail} className="product-card-thumbnail" />
       </a>
-      <p class="product-card-name">{product.name}</p>
-      <p class="product-card-colors">Product Colors: {product.colors}</p>
+      <p className="product-card-name">{product.name}</p>
+      <p className="product-card-colors">Product Colors: {product.colors}</p>
       {product.hasDiscount ? (
-        <p class="product-card-price">
+        <p className="product-card-price">
           <s>${product.price}</s><br></br>
           ${product.discountPrice}
         </p>
       ) : (
-          <p class="product-card-price">
+          <p className="product-card-price">
             ${product.discountPrice}
           </p>
       )}
