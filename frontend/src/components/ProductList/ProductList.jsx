@@ -1,4 +1,5 @@
-import ProductCard from "../../elements/ProductCard/ProductCard"
+import { useState, useEffect } from 'react';
+import ProductCard from "../../elements/ProductCard/ProductCard";
 
 /**
  * @summary Renders a list of products into a box, lol. 
@@ -8,18 +9,23 @@ import ProductCard from "../../elements/ProductCard/ProductCard"
  * 
  */
 
-export default function ProductList({ productsList }) {
+export default function ProductList () {
+  const [cardList, setCardList] = useState([]);
 
-  return productsList.map((product) => (
+  useEffect(() => {
+    const fetchProductsList = async () => {
+      const response = await fetch('http://localhost:3000/api/products');
+      const results = await response.json();
+      setCardList(results);
+    }
+
+    fetchProductsList();
+  }, []);
+
+  return cardList.map((product, i) => (
     <ProductCard
-      key={product.productId}
-      productId={product.productId}
-      productName={product.productName}
-      productThumbnail={product.productThumbnail}
-      productPrice={product.productPrice}
-      hasDiscount={product.hasDiscount}
-      discountPrice={product.discountPrice}
-      productColors={product.productColors}
+      key={i}
+      product={product}
     />
   ))
 }

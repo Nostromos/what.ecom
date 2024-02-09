@@ -53,8 +53,7 @@ ProductsRouter.route('/')
   .get(async (req, res, next) => {
 
     try {
-      const { rows } = await query('SELECT * FROM products LIMIT 100');
-      if (rows) { console.log(rows) };
+      const { rows } = await query('SELECT * FROM products LIMIT 10');
       res.status(200).json(rows);
     } catch (err) {
       console.error(err);

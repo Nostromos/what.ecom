@@ -1,7 +1,7 @@
 import './App.css'
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import PageContent from './components/PageContent/PageContent';
+import ProductList from './components/ProductList/ProductList';
 
 /**
  * Root app render for react. 
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Header />
-      <PageContent />
+      <ProductList />
       <Footer />
     </>
   )
