@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 /* eslint-disable react/prop-types */
 /**
  * Component to display one product in a card with associated thumb, color, and pricing information. 
@@ -13,21 +15,23 @@
  * @returns {ReactNode} Returns a card for a single product including color & pricing information.
  */
 
-export default function ProductCard({ productId, productName, productThumbnail, productPrice, hasDiscount, discountPrice, productColors }) {
+export default function ProductCard(product) {
   
   return (
-    <article id={productId}>
-      <img src={productThumbnail} />
-      <p>{productName}</p>
-      <p>Product Colors: {productColors}</p>
-      {hasDiscount ? (
-        <p>
-          <s>${productPrice}</s><br></br>
-          ${discountPrice}
+    <article class="product-card" key={product.id} sku={product.sku}>
+      <a href={/* LINK TO PRODUCT DETAILS PAGE */}>
+      <img src={product.thumbnail} class="product-card-thumbnail" />
+      </a>
+      <p class="product-card-name">{product.name}</p>
+      <p class="product-card-colors">Product Colors: {product.colors}</p>
+      {product.hasDiscount ? (
+        <p class="product-card-price">
+          <s>${product.price}</s><br></br>
+          ${product.discountPrice}
         </p>
       ) : (
-          <p>
-            ${discountPrice}
+          <p class="product-card-price">
+            ${product.discountPrice}
           </p>
       )}
     </article>

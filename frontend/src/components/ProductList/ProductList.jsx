@@ -1,4 +1,5 @@
-import ProductCard from "../../elements/ProductCard/ProductCard"
+import { useState, useEffect } from 'react';
+import ProductCard from "../../elements/ProductCard/ProductCard";
 
 /**
  * @summary Renders a list of products into a box, lol. 
@@ -9,10 +10,14 @@ import ProductCard from "../../elements/ProductCard/ProductCard"
  */
 
 export default function ProductList({ productsList }) {
+  const [cardList, setCardList] = useState();
 
-  return productsList.map((product) => (
+
+
+
+  return productsList.map((product, i) => (
     <ProductCard
-      key={product.productId}
+      key={i}
       productId={product.productId}
       productName={product.productName}
       productThumbnail={product.productThumbnail}
