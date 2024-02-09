@@ -9,22 +9,23 @@ import ProductCard from "../../elements/ProductCard/ProductCard";
  * 
  */
 
-export default function ProductList({ productsList }) {
-  const [cardList, setCardList] = useState();
+export default function ProductList () {
+  const [cardList, setCardList] = useState([]);
 
+  useEffect(() => {
+    const fetchProductsList = async () => {
+      const response = await fetch('http://localhost:3000/api/products');
+      const results = await response.json();
+      setCardList(results);
+    }
 
+    fetchProductsList();
+  }, []);
 
-
-  return productsList.map((product, i) => (
+  return cardList.map((product, i) => (
     <ProductCard
       key={i}
-      productId={product.productId}
-      productName={product.productName}
-      productThumbnail={product.productThumbnail}
-      productPrice={product.productPrice}
-      hasDiscount={product.hasDiscount}
-      discountPrice={product.discountPrice}
-      productColors={product.productColors}
+      product={product}
     />
   ))
 }

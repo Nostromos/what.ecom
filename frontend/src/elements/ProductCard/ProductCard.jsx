@@ -13,23 +13,23 @@
  * @returns {ReactNode} Returns a card for a single product including color & pricing information.
  */
 
-export default function ProductCard(product) {
+export default function ProductCard({ product }) {
   
   return (
-    <article className="product-card" key={product.id} >
+    <article className="product-card" >
       <a href="">
-      <img src={product.thumbnail} className="product-card-thumbnail" />
+      <img src="" className="product-card-thumbnail" />
       </a>
       <p className="product-card-name">{product.name}</p>
-      <p className="product-card-colors">Product Colors: {product.colors}</p>
-      {product.hasDiscount ? (
+      <p className="product-card-colors">Product Colors: Green, Blue, Red</p>
+      {product.has_discount ? (
         <p className="product-card-price">
-          <s>${product.price}</s><br></br>
-          ${product.discountPrice}
+          <s>{product.base_price}</s><br></br>
+          {product.discount_price}
         </p>
       ) : (
           <p className="product-card-price">
-            ${product.discountPrice}
+            ${product.discount_price}
           </p>
       )}
     </article>

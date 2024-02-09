@@ -2,6 +2,7 @@
 import 'dotenv/config.js';
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
