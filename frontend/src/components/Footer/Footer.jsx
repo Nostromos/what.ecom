@@ -1,16 +1,24 @@
+/**
+ * @fileoverview Footer component.
+ * 
+ * @author Michael Monaghan
+ * 
+ * @module ../../elements/LanguageSelect/LanguageSelect
+ */
+
 import LanguageSelect from "../../elements/LanguageSelect/LanguageSelect";
 import './Footer.css';
 
 /**
  * @summary Footer component.
  * @description Component for returning the main site footer, with copyright, footer nav, and language select components.
- * @param {string} currentLanguage - the language to render copy in for the user.
- * @returns {ReactNode} Returns footer including copyright, footer nav, and [the LanguageSelect]{@link LanguageSelect} component.
- * @author Michael Monaghan
+ * 
+ * @param {string} userLanguage - the language to render copy in for the user.
+ * 
+ * @returns {JSX.Element} Returns footer including copyright, footer nav, and the LanguageSelect component.
  */
 
-// eslint-disable-next-line react/prop-types
-export default function Footer ({ currentLanguage }) {
+export default function Footer(userLanguage) {
   
   return (
     <footer id="footer">
@@ -23,7 +31,7 @@ export default function Footer ({ currentLanguage }) {
           <li className="footer-nav-item">Support</li>
         </ol>
       </nav>
-      <LanguageSelect id="language-select" currentLangugae={currentLanguage} />
+      <LanguageSelect id="language-select" userLanguage={userLanguage} />
     </footer>
   )
 }

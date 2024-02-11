@@ -1,35 +1,44 @@
-/* eslint-disable react/prop-types */
+/**
+ * @fileOverview Defines the ProductCard component, which displays a single product.
+ * 
+ * @author Michael Monaghan
+ */
+
 /**
  * Component to display one product in a card with associated thumb, color, and pricing information. 
  * 
- * @param {integer} productId - the id of the product for sorting
- * @param {string} productName - the name of the product
- * @param {string} productThumbnail - Path to the thumbnail image of a product
- * @param {number} productPrice - The price of a product not including discounts
- * @param {boolean} hasDiscount - True/false on whether the product has a discount or not
- * @param {number} [discountPrice] - price of the product AFTER discount
- * @param {array} productColors - array of strings or identifiers for colors
+ * @param {object} product
+ * @param {string} product.name - The name of a product.
+ * @param {boolean} product.has_discount - Whether a product is discounted or not.
+ * @param {string} product.base_price - The price before taxes or discount.
+ * @param {string} product.discount_price - The price after discount, before taxes.
  * 
- * @returns {ReactNode} Returns a card for a single product including color & pricing information.
+ * @returns {JSX.Element} Returns a card for a single product including color & pricing information.
  */
 
-export default function ProductCard({ product }) {
-  
+export default function ProductCard(product) {
+  const {
+    name,
+    has_discount,
+    base_price,
+    discount_price,
+  } = product;
+
   return (
     <article className="product-card" >
       <a href="">
       <img src="" className="product-card-thumbnail" />
       </a>
-      <p className="product-card-name">{product.name}</p>
+      <p className="product-card-name">{name}</p>
       <p className="product-card-colors">Product Colors: Green, Blue, Red</p>
-      {product.has_discount ? (
+      {has_discount ? (
         <p className="product-card-price">
-          <s>{product.base_price}</s><br></br>
-          {product.discount_price}
+          <s>{base_price}</s><br></br>
+          {discount_price}
         </p>
       ) : (
           <p className="product-card-price">
-            ${product.discount_price}
+            ${discount_price}
           </p>
       )}
     </article>

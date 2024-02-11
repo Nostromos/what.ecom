@@ -1,3 +1,5 @@
+
+
 import { useState } from 'react';
 import Logo from '../../elements/Logo/Logo';
 import HeaderNav from '../../elements/HeaderNav/HeaderNav';
@@ -13,7 +15,9 @@ export default function Header() {
     <header id="header">
       <Logo id="logo"/>
       <HeaderNav id="header-nav"/>
-      {loggedIn ? <UserNav id="user-nav"/> : <LogIn id="login" />}
+      {loggedIn ?
+        <UserNav id="user-nav" /> :
+        <LogIn id="login" />}
     </header>
   )
 }
