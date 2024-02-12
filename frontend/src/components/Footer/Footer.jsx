@@ -1,11 +1,3 @@
-/**
- * @fileoverview Footer component.
- * 
- * @author Michael Monaghan
- * 
- * @module ../../elements/LanguageSelect/LanguageSelect
- */
-
 import LanguageSelect from "../../elements/LanguageSelect/LanguageSelect";
 import './Footer.css';
 
@@ -18,7 +10,7 @@ import './Footer.css';
  * @returns {ReactNode} Returns footer including copyright, footer nav, and the LanguageSelect component.
  */
 
-export default function Footer(userLanguage) {
+function Footer(userLanguage) {
   
   return (
     <footer id="footer">
@@ -35,3 +27,5 @@ export default function Footer(userLanguage) {
     </footer>
   )
 }
+
+export default Footer;

@@ -2,12 +2,9 @@ import currentLanguageFlag from '../../assets/currentLanguageFlag.png';
 import './LanguageSelect.css';
 
 /**
- * @summary Component to select a language.
- * @description This component takes a currentLanguage param from props and uses it to display the flag for the current language.
- * 
- * @param {string} currentLanguage - the current language selected by the user, defaults to english.
- * 
- * @returns {ReactNode} HTML code that renders the current language selection for the user.
+ * LanguageSelect componenet with flag.
+ * @param {string} currentLanguage - the user's current language 
+ * @returns {ReactNode} Returns a language select component.
  */
 
 export default function LanguageSelect({ currentLanguage }) {

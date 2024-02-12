@@ -1,10 +1,3 @@
-/**
- * @fileoverview Footer component.
- * 
- * @author Michael Monaghan
-
- */
-
 import { useState, useEffect } from 'react';
 import CategoryCard from '../../elements/CategoryCard/CategoryCard';
 
@@ -12,10 +5,10 @@ import CategoryCard from '../../elements/CategoryCard/CategoryCard';
  * @summary Returns a carousel of category cards.
  * @description A side-scrollable list of category cards.
  * 
- * @returns {ReactNode} Returns a list of 
+ * @returns {ReactNode} Returns a list of category cards.
  */
 
-export default function CategoryCarousel() {
+function CategoryCarousel() {
   const [categories, setCategories] = useState();
   
   useEffect(() => {
@@ -40,3 +33,5 @@ export default function CategoryCarousel() {
     </section>
   )
 }
+
+export default CategoryCarousel;

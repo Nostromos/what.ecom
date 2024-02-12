@@ -12,7 +12,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "docs": "jsdoc-to-mdx -c jsdoc-to-mdx.config.json"
+    "docs": "jsdoc -c jsdoc.config.json",
+    "docsm": "jsdoc-to-mdx -c jsdoc-to-mdx.config.json"
   },
   "dependencies": {
     "@docusaurus/core": "3.1.1",

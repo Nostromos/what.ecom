@@ -63,8 +63,8 @@ const config = {
       {
         specs: [
           {
-            spec: './data/API.yaml',
-            route:'/api/',
+            id: "using-single-yaml",
+            spec: 'data/API.yaml'
           },
         ],
         theme: {

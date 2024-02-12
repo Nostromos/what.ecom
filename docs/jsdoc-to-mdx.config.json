@@ -1,5 +1,5 @@
 {
   "outDir": "./docs/React",
   "sidebar": "./docs",
-  "jsdoc": "../jsdoc.config.json"
+  "jsdoc": "jsdoc.config.json"
 }

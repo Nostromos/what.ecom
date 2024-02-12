@@ -5,8 +5,6 @@ import ProductList from './components/ProductList/ProductList';
 
 /**
  * Root app render for react. 
- * @param {state} props - takes state.
- * @returns {ReactNode} Returns the app.
  */
 
 function App() {
