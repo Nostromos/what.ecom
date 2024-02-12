@@ -58,6 +58,20 @@ const config = {
         },
       }),
     ],
+    [
+      'redocusaurus',
+      {
+        specs: [
+          {
+            spec: './data/API.yaml',
+            route:'/api/',
+          },
+        ],
+        theme: {
+          primaryColor: '#1890ff',
+        }
+      }
+    ]
   ],
 
   themeConfig:

@@ -2,8 +2,6 @@
  * @fileOverview Defines the ProductCard component, which displays a single product.
  * 
  * @author Michael Monaghan
- * 
- * @module ./ProductCard.css
  */
 
 import './ProductCard.css';

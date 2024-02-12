@@ -9,7 +9,7 @@ import './PageContent.css';
 /**
  * Container to render page content.
  * 
- * @returns Multiple components used for page content.
+ * @returns {ReactNode} Multiple components used for page content.
  */
 
 export default function PageContent() {

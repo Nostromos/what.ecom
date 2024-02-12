@@ -4,13 +4,13 @@ import './LanguageSelect.css';
 /**
  * @summary Component to select a language.
  * @description This component takes a currentLanguage param from props and uses it to display the flag for the current language.
- * @param {object} props
- * @param {string} [props.currentLanguage="english"] - the current language selected by the user, defaults to english.
- * @returns {Component} HTML code that renders the current language selection for the user.
+ * 
+ * @param {string} currentLanguage - the current language selected by the user, defaults to english.
+ * 
+ * @returns {ReactNode} HTML code that renders the current language selection for the user.
  */
 
-// eslint-disable-next-line react/prop-types
-export default function LanguageSelect({ currentLanguage="english" }) {
+export default function LanguageSelect({ currentLanguage }) {
   
   return (
     <div id="current-language">

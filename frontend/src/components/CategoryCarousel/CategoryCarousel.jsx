@@ -2,8 +2,7 @@
  * @fileoverview Footer component.
  * 
  * @author Michael Monaghan
- * 
- * @module react.useState
+
  */
 
 import { useState, useEffect } from 'react';
@@ -11,9 +10,9 @@ import CategoryCard from '../../elements/CategoryCard/CategoryCard';
 
 /**
  * @summary Returns a carousel of category cards.
- * @description 
+ * @description A side-scrollable list of category cards.
  * 
- * @returns {JSX.Element} Returns a list of 
+ * @returns {ReactNode} Returns a list of 
  */
 
 export default function CategoryCarousel() {

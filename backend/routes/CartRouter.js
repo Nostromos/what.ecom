@@ -2,9 +2,6 @@
  * @fileOverview Router for carts.
  * 
  * @author Michael Monaghan
- * 
- * @module express
- * @module ../data/utils/data.js
  */
 
 import express from 'express';

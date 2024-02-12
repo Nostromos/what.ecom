@@ -2,10 +2,6 @@
  * @fileOverview Defines the ProductList component, which lists ProductCards.
  * 
  * @author Michael Monaghan
- * 
- * @module react.useState
- * @module react.useEffect
- * @module ../../elements/ProductCard/ProductCard
  */
 
 import { useState, useEffect } from 'react';

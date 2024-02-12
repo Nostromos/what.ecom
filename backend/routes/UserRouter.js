@@ -1,34 +1,6 @@
 import { Router } from 'express';
 
-export const UserRouter = new Router();
-/**
- * @swagger
- * /user:
- *   get:
- *     summary: Retrieve a user object or objects
- *     description: Retrieve an object containing user information on login or nav to profile page.
- *     responses:
- *       200:
- *         description: An objecting containing user information.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The user's unique ID.
- *                         example: 132248
- *                       name:
- *                         type: string
- *                         description: The user's name.
- *                         example: Michael Monaghan
-*/                       
+export const UserRouter = new Router();              
 
 // GET Get a single user
 UserRouter.route('/')

@@ -15,7 +15,7 @@ import './Footer.css';
  * 
  * @param {string} userLanguage - the language to render copy in for the user.
  * 
- * @returns {JSX.Element} Returns footer including copyright, footer nav, and the LanguageSelect component.
+ * @returns {ReactNode} Returns footer including copyright, footer nav, and the LanguageSelect component.
  */
 
 export default function Footer(userLanguage) {
