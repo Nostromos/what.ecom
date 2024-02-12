@@ -2,7 +2,11 @@
  * @fileOverview Defines the ProductCard component, which displays a single product.
  * 
  * @author Michael Monaghan
+ * 
+ * @module ./ProductCard.css
  */
+
+import './ProductCard.css';
 
 /**
  * Component to display one product in a card with associated thumb, color, and pricing information. 
@@ -16,7 +20,7 @@
  * @returns {JSX.Element} Returns a card for a single product including color & pricing information.
  */
 
-export default function ProductCard(product) {
+export default function ProductCard({ product }) {
   const {
     name,
     has_discount,

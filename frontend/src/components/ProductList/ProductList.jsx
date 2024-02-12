@@ -22,16 +22,22 @@ export default function ProductList () {
 
   useEffect(() => {
     const fetchProductsList = async () => {
+      console.log('Fetching products...');
       /**
        * @summary Fetches all the products for display in ProductList.
        * @description Dispatches a GET request to /products endpoint that returns an array of objects 
        */
       const response = await fetch('http://localhost:3000/api/products');
+      console.log(response);
       const results = await response.json();
+      console.log(`Setting results...`);
+      console.log(results);
       setCardList(results);
+      console.log(`Results set...`);
     }
-    console.log('Fetching products...');
+
     fetchProductsList();
+    console.log('Products fetched...');
   }, []);
 
   return (
