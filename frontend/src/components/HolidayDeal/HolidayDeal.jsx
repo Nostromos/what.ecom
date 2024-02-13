@@ -1,10 +1,10 @@
 /**
  * Component to display the current campaign/deal on the hompage. Should link to a selection of products included in that deal.
  * 
- * @returns {React.Component} Returns the holiday deal/campaign component.
+ * @returns {ReactNode} Returns the holiday deal/campaign component.
  */
 
-export default function HolidayDeal() {
+function HolidayDeal() {
   
   return (
     <section>
@@ -13,3 +13,5 @@ export default function HolidayDeal() {
     </section>
   )
 }
+
+export default HolidayDeal;

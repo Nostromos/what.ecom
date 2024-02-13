@@ -12,7 +12,7 @@ import './PageContent.css';
  * @returns {ReactNode} Multiple components used for page content.
  */
 
-export default function PageContent() {
+function PageContent() {
   const [results, setResults] = useState();
 
   async function fetchResults() {
@@ -47,3 +47,5 @@ export default function PageContent() {
     </section>
   );
 }
+
+export default PageContent;

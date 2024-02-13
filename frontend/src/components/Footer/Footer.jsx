@@ -10,7 +10,7 @@ import './Footer.css';
  * @returns {ReactNode} Returns footer including copyright, footer nav, and the LanguageSelect component.
  */
 
-function Footer(userLanguage) {
+function Footer (userLanguage) {
   
   return (
     <footer id="footer">

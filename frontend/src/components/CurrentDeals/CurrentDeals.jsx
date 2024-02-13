@@ -4,7 +4,7 @@
  * @returns {ReactNode} Returns a component that displays whatever the current deal splash is and a button that links to a filtered list of products for those sale items.
  */
 
-export default function CurrentDeals() {
+function CurrentDeals() {
   
   return (
     <section>
@@ -12,3 +12,5 @@ export default function CurrentDeals() {
     </section>
   )
 }
+
+export default CurrentDeals;

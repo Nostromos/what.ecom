@@ -4,7 +4,7 @@
  * @returns {ReactNode} JSX to render the component, button, and some copy.
  */
 
-export default function SaleHero() {
+function SaleHero() {
   
   return (
     <section>
@@ -13,3 +13,5 @@ export default function SaleHero() {
     </section>
   )
 }
+
+export default SaleHero;

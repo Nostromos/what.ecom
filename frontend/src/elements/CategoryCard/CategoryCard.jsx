@@ -1,11 +1,4 @@
 /**
- * @fileoverview Returns a card for each category selection on home page.
- * 
- * @author Michael Monaghan
- */
-
-
-/**
  * @summary Returns a card per category, used in the home page carousel.
  * @description Each CategoryCard is an `article` element with a descriptive background image and an overlay containing the name. 
  * 
@@ -16,7 +9,7 @@
  * @returns {JSX.Element} Returns an `article` component containing a category box and image.
  */
 
-export default function CategoryCard (category) {
+function CategoryCard (category) {
   const { thumbnail, name } = category;
   
   return (
@@ -30,3 +23,5 @@ export default function CategoryCard (category) {
     </article>
   )
 }
+
+export default CategoryCard;

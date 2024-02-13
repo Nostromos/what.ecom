@@ -2,7 +2,7 @@
  * Newsletter signup component
  */
 
-export default function NewsletterSignup() {
+function NewsletterSignup() {
   
   return (
     <section>
@@ -16,3 +16,5 @@ export default function NewsletterSignup() {
     </section>
   )
 }
+
+export default NewsletterSignup;

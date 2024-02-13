@@ -1,19 +1,14 @@
-/**
- * @fileOverview Defines the ProductList component, which lists ProductCards.
- * 
- * @author Michael Monaghan
- */
-
 import { useState, useEffect } from 'react';
 import ProductCard from "../../elements/ProductCard/ProductCard";
 
 /**
  * @summary Renders a list of products into a box.
  * @description Fetches a Array of product objects from the API, saves them to state, and .maps over them, passing props to and rendering a ProductCard for each entry.
- * @returns {JSX.Element} A `section` element containing a list of ProductCard components.
+ * 
+ * @returns {ReactNode} A `section` element containing a list of ProductCard components.
  */
 
-export default function ProductList () {
+function ProductList () {
   const [cardList, setCardList] = useState([]);
 
   useEffect(() => {
@@ -49,3 +44,5 @@ export default function ProductList () {
     </section>
   )
 }
+
+export default ProductList;

@@ -1,6 +1,11 @@
 import './UserNav.css';
 
-export default function UserNav() {
+/**
+ * Returns icons for users upon auth. Things like cart, profile, order history, etc.
+ * @returns {ReactNode} Collection of nav icons for user interactions.
+ */
+
+function UserNav() {
   
   return (
     <ol id="userNav">
@@ -11,3 +16,5 @@ export default function UserNav() {
     </ol>
   )
 }
+
+export default UserNav;

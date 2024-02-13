@@ -1,9 +1,3 @@
-/**
- * @fileOverview Defines the ProductCard component, which displays a single product.
- * 
- * @author Michael Monaghan
- */
-
 import './ProductCard.css';
 
 /**
@@ -15,10 +9,10 @@ import './ProductCard.css';
  * @param {string} product.base_price - The price before taxes or discount.
  * @param {string} product.discount_price - The price after discount, before taxes.
  * 
- * @returns {JSX.Element} Returns a card for a single product including color & pricing information.
+ * @returns {ReactNode} Returns a card for a single product including color & pricing information.
  */
 
-export default function ProductCard({ product }) {
+function ProductCard({ product }) {
   const {
     name,
     has_discount,
@@ -46,3 +40,5 @@ export default function ProductCard({ product }) {
     </article>
   )
 }
+
+export default ProductCard;

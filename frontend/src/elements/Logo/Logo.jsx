@@ -1,7 +1,12 @@
 import './Logo.css';
 import logoImage from '../../assets/CompanyLogo.png';
 
-export default function Logo() {
+/**
+ * Component to return the logo & company name in header.
+ * @returns {ReactNode} Returns logo & company name.
+ */
+
+function Logo() {
   
   return (
     <div id="logo-box">
@@ -10,3 +15,5 @@ export default function Logo() {
     </div>
   )
 }
+
+export default Logo;

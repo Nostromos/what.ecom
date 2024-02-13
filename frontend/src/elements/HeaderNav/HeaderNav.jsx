@@ -1,6 +1,11 @@
 import './HeaderNav.css';
 
-export default function HeaderNav() {
+/**
+ * The centered nav component for header.
+ * @returns {ReactNode} Nav containing headernav items.
+ */
+
+function HeaderNav() {
   
   return (
     <>
@@ -15,3 +20,5 @@ export default function HeaderNav() {
     </>
   )
 }
+
+export default HeaderNav;
