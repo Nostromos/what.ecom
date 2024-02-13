@@ -3,7 +3,7 @@ import CategoryCard from '../../elements/CategoryCard/CategoryCard';
 
 /**
  * @summary Returns a carousel of category cards.
- * @description A side-scrollable list of category cards.
+ * @description A side-scrollable list of category cards. 
  * 
  * @returns {ReactNode} Returns a list of category cards.
  */
