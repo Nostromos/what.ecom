@@ -1,9 +1,3 @@
-/**
- * @fileOverview Router for carts.
- * 
- * @author Michael Monaghan
- */
-
 import express from 'express';
 import query from '../data/utils/data.js';
 

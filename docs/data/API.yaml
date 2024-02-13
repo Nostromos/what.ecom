@@ -1,4 +1,4 @@
-openapi: 3.0.1
+swagger: 3.0.0
 info:
   title: what.ecom
   version: 0.0.0
@@ -7,6 +7,35 @@ info:
     email: michael@monaghan.nyc
     name: Michael Monaghan
 paths:
+  /cart/{user_id}:
+    summary: Returns cart information.
+    get:
+      summary: Gets a user's cart by their ID.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      operationId: getUserCart
+      responses:
+        200:
+          description: Cart found and returned.
+          content:
+            application/json:
+              examples:
+                Full Cart Information:
+                  value:
+                    [
+                      {
+                        id: 232,
+                        user_id: 2343,
+                        total_price: $432.33
+                      }
+                    ]
+      tags:
+        - Cart
   /user/{id}:
     summary: Returns user information.
     get:
@@ -76,26 +105,87 @@ paths:
           description: success
       tags: 
         - User
+  /cart/{cartId}:
+    get:
+      description: Get the contents of a user's cart
+      responses:
+        '200':
+          description: Found the cart and returned it in response body.
 components:
   schemas:
     Order:
       type: object
       properties:
-        name:
-          type: string
         id:
           type: string
-        state:
+          description: Unique ID of the specific order.
+        user_id:
           type: string
-      xml:
-        name: Order
+          description: Unique ID of the user who made the purchase.
+        cart_id:
+          type: integer
+          description: Unique ID of the associated cart for the order.
+        base_price:
+          type: number
+          description: The total price of the order before fees, discount, or tax.
+        total_price:
+          type: number
+          description: The total price of the order including fees, discount, and tax.
+        payment_card_id:
+          type: integer
+          description: The ID for the payment card information.
+        shipping_address_id:
+          type: integer
+          description: ID for shipping address.
+        billing_address_id:
+          type: integer
+          description: ID for the billing address.
+        status: 
+          type: string
+          enum: ['checkout', 'pending', 'paid', 'preparing', 'shipped', 'fulfilled']
+          description: Order status string denoting where in the pipeline the order is. 
+      required:
+        - id
+        - user_id
+        - cart_id
+        - base_price
+        - total_price
+        - payment_card_id
+        - shipping_address_id
+        - billing_address_id
+        - status
     User:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Unique id for user. 
+        first_name:
+          type: string
+          description: User's first name.
+        last_name:
+          type: string
+          description: User's last name (aka surname).
+        email_address:
+          type: string
+          format: email
+          description: User's email address.
+        phone:
+          type: string
+          description: User's phone number.
+      required:
+        - first_name
+        - last_name
+        - email_address
+        - phone
+        
 servers:
   - url: http://localhost:3000/api
     variables: {}
-    description: Local Dev Server URL
+    description: Local Dev
+  - url: https://staging.what.lol/ecom/api
+    variables: {}
+    description: Staging
+  - url: https://what.lol/ecom/api
+    variables: {}
+    description: Production
