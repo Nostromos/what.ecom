@@ -1,0 +1,5 @@
+{
+  "outDir": "./docs/Frontend/Components",
+  "sidebar": "./docs",
+  "jsdoc": "jsdoc.config.json"
+}

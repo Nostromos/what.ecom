@@ -153,3 +153,5 @@ export const rawProductList = [
 /* console.log(rawProductList[0]);
 const sampleProductList = JSON.parse(rawProductList[0]);
 console.log(sampleProductList); */
+
+console.log(typeof rawProductList[0].base_price);
