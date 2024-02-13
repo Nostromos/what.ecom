@@ -1,4 +1,4 @@
-swagger: 3.0.0
+openapi: 3.0.0
 info:
   title: what.ecom
   version: 0.0.0
@@ -7,35 +7,7 @@ info:
     email: michael@monaghan.nyc
     name: Michael Monaghan
 paths:
-  /cart/{user_id}:
-    summary: Returns cart information.
-    get:
-      summary: Gets a user's cart by their ID.
-      parameters:
-        - in: path
-          name: user_id
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-      operationId: getUserCart
-      responses:
-        200:
-          description: Cart found and returned.
-          content:
-            application/json:
-              examples:
-                Full Cart Information:
-                  value:
-                    [
-                      {
-                        id: 232,
-                        user_id: 2343,
-                        total_price: $432.33
-                      }
-                    ]
-      tags:
-        - Cart
+  
   /user/{id}:
     summary: Returns user information.
     get:
@@ -82,6 +54,7 @@ paths:
           description: Not found. You're requesting information for a user that does not exist. 
       tags:
         - User
+  
   /user/register:
     summary: Registers a new user.
     post:
@@ -95,6 +68,7 @@ paths:
           description: Default error sample response
       tags:
         - User
+      
   /user/login:
     summary: Logs a user in.
     post:
@@ -105,14 +79,61 @@ paths:
           description: success
       tags: 
         - User
+        
   /cart/{cartId}:
     get:
       description: Get the contents of a user's cart
       responses:
         '200':
           description: Found the cart and returned it in response body.
+      tags:
+        - Cart
+  /cart/{user_id}:
+    summary: Returns cart information.
+    get:
+      summary: Gets a user's cart by their ID.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      operationId: getUserCart
+      responses:
+        200:
+          description: Cart found and returned.
+          content:
+            application/json:
+              examples:
+                Full Cart Information:
+                  value:
+                    [
+                      {
+                        id: 232,
+                        user_id: 2343,
+                        total_price: $432.33
+                      }
+                    ]
+      tags:
+        - Cart
+    post:
+      description: 'Add item to cart'
+      parameters: 
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+
 components:
+  
   schemas:
+    
     Order:
       type: object
       properties:
@@ -154,12 +175,20 @@ components:
         - shipping_address_id
         - billing_address_id
         - status
+        
+    UserID:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique ID for user.
+    
     User:
       type: object
       properties:
         id:
           type: integer
-          description: Unique id for user. 
+          $ref: "#/components/schemas/UserID" 
         first_name:
           type: string
           description: User's first name.
