@@ -2,7 +2,7 @@ import './App.css'
 import {
   Header,
   Footer,
-  ProductList
+  HomePage
 } from './components';
 
 /**
@@ -14,10 +14,10 @@ function App() {
   return (
     <div className="main_app">
       <Header />
-      <ProductList />
+      <HomePage />
       <Footer />
     </div>
   )
 }
 
-export default App
+export default App;

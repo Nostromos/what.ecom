@@ -1,5 +1,6 @@
 import express from 'express';
-import { getCategoryList } from '../data/utils/queryText';
+import query from '../data/utils/data.js';
+import { getCategoryList } from '../data/utils/queryText.js';
 
 const CategoryRouter = express.Router();
 

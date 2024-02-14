@@ -5,7 +5,7 @@ import {
   getOrderInformation
 } from '../data/utils/queryText.js';
 
-export const OrderRouter = express.Router();
+const OrderRouter = express.Router();
 
 OrderRouter.get('/', async (req, res, next) => {
   const text = getOrderInformation;
@@ -24,4 +24,6 @@ OrderRouter.get('/', async (req, res, next) => {
 
 OrderRouter.post('/', async (req, res, next) => {
   
-})
+});
+
+export default OrderRouter;

@@ -11,7 +11,7 @@ import {
   removeSingleProduct
 } from '../data/utils/queryText.js';
 
-export const CartRouter = express.Router();
+const CartRouter = express.Router();
 
 // GET Gets a list of the users carts
 CartRouter.route('/:user_id')
@@ -117,3 +117,5 @@ CartRouter.delete('/remove', async (req, res, next) => {
   }
 
 });
+
+export default CartRouter;

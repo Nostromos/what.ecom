@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 
-export const UserRouter = new Router();              
+const UserRouter = express.Router();              
 
 // GET Get a single user
 UserRouter.route('/')
@@ -22,3 +22,5 @@ UserRouter.route('/login')
   .post((req, res, next) => {
 
   });
+
+export default UserRouter;

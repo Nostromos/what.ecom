@@ -5,7 +5,7 @@ import {
   getProductsByCategory
 } from '../data/utils/queryText.js';
 
-export const ProductsRouter = express.Router();
+const ProductsRouter = express.Router();
 
 ProductsRouter.route('/')
   // GET All Products
@@ -65,3 +65,5 @@ ProductsRouter.get('/:category', async (req, res, next) => {
   }
 
 });
+
+export default ProductsRouter;
