@@ -83,11 +83,19 @@ paths:
   /cart/{cartId}:
     get:
       description: Get the contents of a user's cart
+      parameters:
+        - in: path
+          name: cartId
+          required: true
+          schema:
+            type: integer
+            minimum: 1
       responses:
         '200':
           description: Found the cart and returned it in response body.
       tags:
         - Cart
+
   /cart/{user_id}:
     summary: Returns cart information.
     get:
@@ -187,8 +195,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          $ref: "#/components/schemas/UserID" 
+          $ref: '#/components/schemas/UserID/properties/id' 
         first_name:
           type: string
           description: User's first name.

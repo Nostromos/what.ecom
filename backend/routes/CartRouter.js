@@ -14,18 +14,31 @@ import {
 export const CartRouter = express.Router();
 
 // GET Gets a list of the users carts
-CartRouter.get('/:userId', async (req, res, next) => {
-  const text = getUsersCarts;
-  const value = [req.params.userId];
+CartRouter.route('/:user_id')
+  .get(async (req, res, next) => {
+    const text = getUsersCarts;
+    const value = [req.params.userId];
 
-  try {
-    const { rows } = await query(text, value);
-    if (rows) { console.log(rows) };
-    res.json(rows);
-  } catch (err) {
-    console.log(err);
-  }
-});
+    try {
+      const { rows } = await query(text, value);
+      res.json(rows);
+    } catch (err) {
+      console.log(err);
+    }
+  })
+  .post(async (req, res, next) => {
+    const text = createCart;
+    const values = [req.params.userId];
+
+    try {
+      const { rows } = await query(text, values);
+      res.json(rows);
+    } catch (err) {
+      console.error(err);
+    }
+
+  });
+
 
 // GET Gets the items in users cart by user ID and returns a list of products contained including quantity
 CartRouter.get('/:cartId', async (req, res, next) => {
@@ -38,21 +51,6 @@ CartRouter.get('/:cartId', async (req, res, next) => {
     res.json(rows);
   } catch (err) {
     console.log(err);
-  }
-
-});
-
-// POST Create a new cart whenever the first item is added and cart is empty.
-CartRouter.post('/:userId', async (req, res, next) => {
-  const text = createCart;
-  const values = [req.params.userId];
-
-  try {
-    const { rows } = await query(text, values);
-    if (rows) { console.log(rows) };
-    res.json(rows);
-  } catch (err) {
-    console.error(err);
   }
 
 });
@@ -98,7 +96,6 @@ CartRouter.delete('/clear', async (req, res, next) => {
 
   try {
     const { rows } = await query(text, values);
-    if (rows) { console.log(rows) };
     res.json(rows);
   } catch (err) {
     console.error(err);
@@ -114,7 +111,6 @@ CartRouter.delete('/remove', async (req, res, next) => {
 
   try {
     const { rows } = await query(text, values);
-    if (rows) { console.log(rows) };
     res.json(rows);
   } catch (err) {
     console.error(err);
