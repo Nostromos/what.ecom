@@ -1,3 +1,5 @@
+import HomepageCopy from '../../utils/HomepageFeatures';
+
 /**
  * Hero that shows up at top of page for most valuable content.
  * 
@@ -5,11 +7,12 @@
  */
 
 function SaleHero() {
+  const { main } = HomepageCopy;
   
   return (
-    <section>
-      <p>Some sales copy here. Buy the love you need now.</p>
-      <button>BUY IT NOW</button>
+    <section className="sale_hero_main">
+      <p className="sale_hero_copy">{main.description}</p>
+      <button className="sale_hero_button">{main.buttonText}</button>
     </section>
   )
 }

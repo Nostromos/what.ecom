@@ -1,7 +1,9 @@
 import './App.css'
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import ProductList from './components/ProductList/ProductList';
+import {
+  Header,
+  Footer,
+  ProductList
+} from './components';
 
 /**
  * Root app render for react. 
@@ -10,11 +12,11 @@ import ProductList from './components/ProductList/ProductList';
 function App() {
   
   return (
-    <>
+    <div className="main_app">
       <Header />
       <ProductList />
       <Footer />
-    </>
+    </div>
   )
 }
 

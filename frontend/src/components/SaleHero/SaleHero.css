@@ -1,0 +1,20 @@
+.sale_hero_main {
+  background-image: url('../../assets/sale-hero-background-image.png');
+  align-items: center;
+  justify-items: center;
+}
+
+.sale_hero_copy {
+  font-family: "Cabin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.sale_hero_button {
+  border-radius: 15px;
+  color: #fff;
+  background-color: #438AB2;
+}

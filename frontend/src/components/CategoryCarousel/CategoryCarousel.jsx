@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import CategoryCard from '../../elements/CategoryCard/CategoryCard';
+import './CategoryCarousel.css';
 
 /**
  * @summary Returns a carousel of category cards.
@@ -21,7 +22,7 @@ function CategoryCarousel() {
   });
 
   return (
-    <section>
+    <section className="category-carousel">
       {
         categories.map((category, i) =>
           <CategoryCard

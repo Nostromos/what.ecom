@@ -1,0 +1,7 @@
+.homepage {
+  display: flex;
+}
+
+.homepage_minis {
+  display: inline-flex;
+}

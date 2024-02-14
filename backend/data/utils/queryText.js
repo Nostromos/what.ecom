@@ -65,3 +65,7 @@ export const getOrderInformation =
   `SELECT *
    FROM orders
    WHERE id = $1`;
+
+export const getCategoryList =
+  `SELECT name
+   FROM categories`;

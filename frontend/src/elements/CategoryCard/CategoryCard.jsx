@@ -1,3 +1,5 @@
+import './CategoryCard.css';
+
 /**
  * @summary Returns a card per category, used in the home page carousel.
  * @description Each CategoryCard is an `article` element with a descriptive background image and an overlay containing the name. 
@@ -6,7 +8,7 @@
  * @param {string} category.thumbnail - URL to category thumbnail.
  * @param {string} category.name - The category name.
  * 
- * @returns {JSX.Element} Returns an `article` component containing a category box and image.
+ * @returns {ReactNode} Returns an `article` component containing a category box and image.
  */
 
 function CategoryCard (category) {
