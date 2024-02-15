@@ -16,7 +16,7 @@ function CategoryCard ({ category }) {
   const thumbnail = 'https://loremflickr.com/240/240';
   
   return (
-    <article>
+    <article className="category-card">
       <img
         className="category-card-img-background"
         src={thumbnail} />

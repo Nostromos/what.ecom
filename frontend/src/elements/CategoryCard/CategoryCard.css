@@ -1,0 +1,10 @@
+.category-card {
+  width: 10em;
+  height: 10em;
+  text-align: center;
+}
+
+.category-card-img-background {
+  width: 80%;
+  border-radius: 15px;
+}

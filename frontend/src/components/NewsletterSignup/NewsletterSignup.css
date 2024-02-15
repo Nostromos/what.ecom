@@ -1,0 +1,7 @@
+.newsletter-signup {
+  display: flex;
+  width: 33%;
+  border: 1px solid red;
+  align-items: center;
+  justify-content: center;
+}

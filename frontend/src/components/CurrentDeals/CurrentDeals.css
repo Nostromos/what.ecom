@@ -1,0 +1,5 @@
+.current-deals {
+  display: flex;
+  flex-wrap: wrap;
+  width: 33%;
+}

@@ -12,7 +12,7 @@ function SaleHero() {
   
   return (
     <section className="sale_hero_main">
-      <p className="sale_hero_copy">{main.description}</p>
+      <h1 className="sale_hero_copy">{main.description}</h1>
       <button className="sale_hero_button">{main.buttonText}</button>
     </section>
   )

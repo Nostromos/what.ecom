@@ -2,7 +2,8 @@ import express from 'express';
 import query from '../data/utils/data.js';
 import {
   updateSingleProductQuantity,
-  getProductsByCategory
+  getProductsByCategory,
+  getCurrentDeals
 } from '../data/utils/queryText.js';
 
 const ProductsRouter = express.Router();
@@ -19,6 +20,19 @@ ProductsRouter.route('/')
     }
 
   });
+
+ProductsRouter.get('/deals', async (req, res, next) => {
+  const text = getCurrentDeals;
+  const values = [];
+
+  try {
+    const { rows } = await query(text, values);
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+  }
+
+})
 
 ProductsRouter.route('/:id')
   // GET A Single Product by ID

@@ -70,3 +70,9 @@ export const getCategoryList =
   `SELECT name
    FROM categories
    LIMIT 10`;
+
+export const getCurrentDeals =
+  `SELECT *
+   FROM products
+   WHERE has_discount = true
+   LIMIT 10`;
