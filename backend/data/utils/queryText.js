@@ -68,4 +68,5 @@ export const getOrderInformation =
 
 export const getCategoryList =
   `SELECT name
-   FROM categories`;
+   FROM categories
+   LIMIT 10`;

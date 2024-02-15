@@ -1,7 +1,10 @@
 .homepage {
-  display: flex;
+  display: block;
+  margin: 10px;
 }
 
 .homepage_minis {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+
 }

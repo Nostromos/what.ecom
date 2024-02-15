@@ -1,4 +1,5 @@
 import HomepageCopy from '../../utils/HomepageFeatures';
+import './SaleHero.css';
 
 /**
  * Hero that shows up at top of page for most valuable content.

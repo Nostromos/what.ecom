@@ -10,8 +10,7 @@ CategoryRouter.get('/', async (req, res, next) => {
 
   try {
     const { rows } = await query(text, values);
-    if (rows) { console.log(rows) };
-    res.json(rows);
+    res.status(200).json(rows);
   } catch (err) {
     console.log(err)
   }

@@ -11,8 +11,9 @@ import './CategoryCard.css';
  * @returns {ReactNode} Returns an `article` component containing a category box and image.
  */
 
-function CategoryCard (category) {
-  const { thumbnail, name } = category;
+function CategoryCard ({ category }) {
+  const { name } = category;
+  const thumbnail = 'https://loremflickr.com/240/240';
   
   return (
     <article>

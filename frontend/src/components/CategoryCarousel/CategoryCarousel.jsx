@@ -10,16 +10,16 @@ import './CategoryCarousel.css';
  */
 
 function CategoryCarousel() {
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
   
   useEffect(() => {
     async function getCategories () {
-      const response = await fetch('http://localhost:3000/api/categories');
+      const response = await fetch('http://localhost:3000/api/category');
       const results = await response.json();
       setCategories(results);
     }
     getCategories();
-  });
+  }, []);
 
   return (
     <section className="category-carousel">

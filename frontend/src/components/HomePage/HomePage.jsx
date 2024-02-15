@@ -5,7 +5,7 @@ import {
   HolidayDeal,
   CurrentDeals,
 } from '../../components'
-
+import './HomePage.css';
 
 function HomePage() {
   
