@@ -1,32 +1,33 @@
-import 'dotenv/config.js';
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
+import "dotenv/config.js";
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import {
+  UserRouter,
+  ProductsRouter,
+  CartRouter,
+  CategoryRouter,
+  CheckoutRouter,
+  OrderRouter,
+} from "./routes/index.js";
 
 const app = express();
-const port = 3000; // TODO Update this port to use dotenv
+const port = process.env.PORT ?? 3000; // TODO: Updated for environment vairables
+const appRouter = express.Router();
 
-app.use(morgan('combined')); // logging
+// Middleware
+app.use(morgan("combined")); // logging
 app.use(express.json()); // json parsing
 app.use(cors()); // cors - gotta come back to this
+app.use("/api", appRouter);
 
-import UserRouter from './routes/UserRouter.js';
-app.use('/api/user', UserRouter);
-
-import ProductsRouter from './routes/ProductsRouter.js';
-app.use('/api/products', ProductsRouter);
-
-import CartRouter from './routes/CartRouter.js';
-app.use('/api/cart', CartRouter);
-
-import CheckoutRouter from './routes/CheckoutRouter.js';
-app.use('/api/checkout', CheckoutRouter);
-
-import OrderRouter from './routes/OrderRouter.js';
-app.use('/api/order', OrderRouter);
-
-import CategoryRouter from './routes/CategoryRouter.js'
-app.use('/api/category', CategoryRouter)
+// Routes
+appRouter.use("/user", UserRouter);
+appRouter.use("/products", ProductsRouter);
+appRouter.use("/cart", CartRouter);
+appRouter.use("/checkout", CheckoutRouter);
+appRouter.use("/order", OrderRouter);
+appRouter.use("/category", CategoryRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
