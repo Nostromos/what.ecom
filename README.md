@@ -24,6 +24,10 @@ This is the final portfolio project in the Codecademy Full Stack Career path. Th
 2. `npm install` in both the frontend/ and backend/ folders
 3. `npm run dev` for both to get em up
 
+## Contributing
+
+This is a personal project so I'm not accepting outside contributions.
+
 ## Author
 
 Michael Monaghan
