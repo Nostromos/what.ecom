@@ -27,6 +27,7 @@ ProductsRouter.get('/deals', async (req, res, next) => {
 
   try {
     const { rows } = await query(text, values);
+    console.log(rows);
     res.status(200).json(rows);
   } catch (err) {
     console.log(err);

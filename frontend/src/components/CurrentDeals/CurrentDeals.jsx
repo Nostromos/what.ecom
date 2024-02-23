@@ -13,9 +13,13 @@ function CurrentDeals() {
 
 
   useEffect(() => {
+    /**
+     * Gets a list of products that are currently discounted.
+     */
     async function getCurrentDeals() {
       const response = await fetch('http://localhost:3000/api/products/deals');
       const results = await response.json();
+      console.log(results);
       setDealCards(results);
       console.log(dealCards);
     }

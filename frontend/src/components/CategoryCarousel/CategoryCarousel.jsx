@@ -18,6 +18,7 @@ function CategoryCarousel() {
       const results = await response.json();
       setCategories(results);
     }
+
     getCategories();
   }, []);
 
