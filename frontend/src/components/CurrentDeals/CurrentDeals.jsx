@@ -11,7 +11,6 @@ import { ProductCard } from '../../elements';
 function CurrentDeals() {
   const [dealCards, setDealCards] = useState([]);
 
-
   useEffect(() => {
     /**
      * Gets a list of products that are currently discounted.
