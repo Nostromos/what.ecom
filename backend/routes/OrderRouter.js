@@ -14,7 +14,7 @@ OrderRouter.get('/', async (req, res, next) => {
 
   try {
     const { rows } = query(text, values);
-    if (rows) { console.log(rows) };
+    //if (rows) { console.log(rows) };
     res.json(rows);
   } catch (err) {
     console.error(err);
