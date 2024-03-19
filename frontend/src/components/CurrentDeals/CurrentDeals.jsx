@@ -25,6 +25,17 @@ function CurrentDeals() {
     getCurrentDeals();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('http://localhost:3000/api/products/deals');
+      const results = await response.json();
+      console.log(results);
+      setDealCards(results);
+      console.log(dealCards);
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   return (
     <section className="current-deals">
