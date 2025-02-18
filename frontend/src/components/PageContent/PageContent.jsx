@@ -15,17 +15,16 @@ import './PageContent.css';
 function PageContent() {
   const [results, setResults] = useState();
 
-  async function fetchResults() {
-    const response = await fetch("http://localhost:3000/api/products");
-    const products = await response.json();
-    console.log(products);  
-    setResults(products);
-  }
-
   useEffect(() => {
+    async function fetchResults() {
+      const response = await fetch("http://localhost:3000/api/products");
+      const products = await response.json();
+      setResults(products);
+    }
+
     fetchResults();
   }, []);
-  
+
   
   return (
     <section>

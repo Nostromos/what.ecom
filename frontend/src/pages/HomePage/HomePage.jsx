@@ -7,8 +7,8 @@ import {
 } from '../../components'
 import './HomePage.css';
 
-function HomePage() {
-  
+export default function HomePage() {
+
   return (
     <main className="homepage">
       <SaleHero />
@@ -19,8 +19,5 @@ function HomePage() {
         <CurrentDeals />
       </section>
     </main>
-
   )
 }
-
-export default HomePage;

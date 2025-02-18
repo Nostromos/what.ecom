@@ -36,7 +36,6 @@ CartRouter.route('/:user_id')
     } catch (err) {
       console.error(err);
     }
-
   });
 
 
@@ -52,7 +51,6 @@ CartRouter.get('/:cartId', async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
-
 });
 
 // POST Add an item to cart
@@ -68,7 +66,6 @@ CartRouter.post('/add', async (req, res, next) => {
   } catch (err) {
     console.error(err);
   }
-
 });
 
 // PUT Update an item in a cart
@@ -84,7 +81,6 @@ CartRouter.put('/update', async (req, res, next) => {
   } catch (err) {
     console.error(err);
   } 
-
 });
 
 // DELETE Delete a cart when the user wants to clear it.
@@ -100,7 +96,6 @@ CartRouter.delete('/clear', async (req, res, next) => {
   } catch (err) {
     console.error(err);
   }
-
 });
 
 // DELETE Delete an item from a cart when removed or quantity set to zero
@@ -115,7 +110,6 @@ CartRouter.delete('/remove', async (req, res, next) => {
   } catch (err) {
     console.error(err);
   }
-
 });
 
 export default CartRouter;

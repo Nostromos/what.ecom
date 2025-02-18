@@ -27,7 +27,7 @@ ProductsRouter.get('/deals', async (req, res, next) => {
 
   try {
     const { rows } = await query(text, values);
-    console.log(rows);
+    //console.log(rows);
     res.status(200).json(rows);
   } catch (err) {
     console.log(err);
@@ -42,7 +42,7 @@ ProductsRouter.route('/:id')
     
     try {
       const { rows } = await query('SELECT * FROM products WHERE id = $1', [id]);
-      if (rows) { console.log(rows) };
+      //if (rows) { console.log(rows) };
       res.json(rows);
     } catch (err) {
       console.error(err);
@@ -57,7 +57,7 @@ ProductsRouter.route('/:id')
 
     try {
       const { rows } = await query(text, values);
-      if (rows) { console.log(rows) };
+      //if (rows) { console.log(rows) };
       res.json(rows);
     } catch (err) {
       console.error(err);
@@ -73,7 +73,7 @@ ProductsRouter.get('/:category', async (req, res, next) => {
 
   try {
     const { rows } = await query(text, values);
-    if (rows) { console.log(rows) };
+    //if (rows) { console.log(rows) };
     res.json(rows);
   } catch (err) {
     console.error(err);
